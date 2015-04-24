@@ -1,4 +1,4 @@
-Mule Applications as a Microervice powered by Spring Boot
+Mule Applications as a Microservice powered by Spring Boot
 ==========================================================
 [![Build Status](https://travis-ci.org/codecentric/mule-spring-boot-starter.png?branch=master)](https://travis-ci.org/codecentric/mule-spring-boot-starter)
 
@@ -18,7 +18,7 @@ Step 2. Add the dependency in the form
 ```xml
 <dependency>
     <groupId>com.github.User</groupId>
-    <artifactId>Repo name</artifactId>
+    <artifactId>mule-spring-boot-starter</artifactId>
     <version>short commit id</version>
 </dependency>
 ```
