@@ -1,6 +1,6 @@
 Mule Applications as a Microservice powered by Spring Boot
 ==========================================================
-[![Build Status](https://travis-ci.org/codecentric/mule-spring-boot-starter.png?branch=master)](https://travis-ci.org/codecentric/mule-spring-boot-starter)
+[![Build Status](https://travis-ci.org/denschu/mule-spring-boot-starter.png?branch=master)](https://travis-ci.org/codecentric/mule-spring-boot-starter)
 
 With this Starter you are able to use Mule with Spring Boot.
 

@@ -53,12 +53,18 @@
 			<artifactId>mule-core</artifactId>
 			<version>${muleVersion}</version>
 		</dependency>
-		<!-- Mule Transporte -->
+		<!-- Mule Transports -->
 		<dependency>
 			<groupId>org.mule.transports</groupId>
 			<artifactId>mule-transport-http</artifactId>
 			<version>${muleVersion}</version>
 			<scope>test</scope>
+		</dependency>
+		<!-- Mule Modules -->
+		<dependency>
+			<groupId>org.mule.modules</groupId>
+			<artifactId>mule-module-spring-config</artifactId>
+			<version>${muleVersion}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
