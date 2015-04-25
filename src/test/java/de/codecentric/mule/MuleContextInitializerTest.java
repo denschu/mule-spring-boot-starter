@@ -29,6 +29,7 @@ public class MuleContextInitializerTest {
 		context.refresh();
 		
 		initializer = new MuleContextInitializer();
+		initializer.setConfig("mule-noop-config.xml");
 	}
 	
 	@After

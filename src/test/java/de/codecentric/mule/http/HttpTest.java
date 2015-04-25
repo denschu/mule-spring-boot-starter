@@ -17,7 +17,7 @@ import de.codecentric.mule.http.HttpTest.TestApplication;
 
 @SpringApplicationConfiguration(classes = TestApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-@IntegrationTest
+@IntegrationTest("mule.config=mule-http-config.xml")
 public class HttpTest {
 
 	@Test
