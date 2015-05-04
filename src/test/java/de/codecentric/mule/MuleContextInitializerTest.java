@@ -17,6 +17,12 @@ import org.springframework.context.event.ContextRefreshedEvent;
 
 import de.codecentric.mule.configuration.MuleContextInitializer;
 
+
+/**
+ * Test for the Mule Lifecycle
+ * 
+ * @author Dennis Schulte
+ */
 public class MuleContextInitializerTest {
 
 	private AnnotationConfigApplicationContext context;
@@ -27,7 +33,6 @@ public class MuleContextInitializerTest {
 		context = new AnnotationConfigApplicationContext();
 		context.register(TestApplication.class);
 		context.refresh();
-		
 		initializer = new MuleContextInitializer();
 		initializer.setConfig("mule-noop-config.xml");
 	}
@@ -37,27 +42,23 @@ public class MuleContextInitializerTest {
 		if (context != null) {
 			context.close();
 		}
-		
 		if (initializer != null && initializer.getMuleContext() != null) {
 			initializer.getMuleContext().dispose();
 		}
-		
 	}
 	
 	@Test
-	public void test_parentContext() {
+	public void testParentContext() {
 		initializer.onApplicationEvent(new ContextRefreshedEvent(context));
-		
 		assertEquals("test", initializer.getMuleContext().getRegistry().get("testBean"));
 	}
 	
 	@Test
-	public void test_lifecycle() {
+	public void testLifecycle() {
 		initializer.onApplicationEvent(new ContextRefreshedEvent(context));
 		assertNotNull(initializer.getMuleContext());
 		MuleContext muleContext = initializer.getMuleContext();
 		assertTrue(muleContext.isStarted());
-		
 		initializer.onApplicationEvent(new ContextClosedEvent(context));
 		assertNull(initializer.getMuleContext());
 		assertTrue(muleContext.isDisposed());

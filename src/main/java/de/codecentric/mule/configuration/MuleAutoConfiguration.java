@@ -8,11 +8,16 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
+/**
+ * Spring Boot Autoconfiguration for the MuleContext
+ * 
+ * @author Dennis Schulte
+ */
 @Configuration
 @EnableConfigurationProperties
 @ConditionalOnClass(MuleContext.class)
 public class MuleAutoConfiguration {
-	
 	
 	@Bean
 	@ConditionalOnMissingBean

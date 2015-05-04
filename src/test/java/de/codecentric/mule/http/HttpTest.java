@@ -15,6 +15,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import de.codecentric.mule.http.HttpTest.TestApplication;
 
+
+/**
+ * Simple test for Mule with a HTTP Endpoint
+ * 
+ * @author Dennis Schulte
+ */
 @SpringApplicationConfiguration(classes = TestApplication.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @IntegrationTest("mule.config=mule-http-config.xml")
