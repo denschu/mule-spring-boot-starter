@@ -1,2 +1,1 @@
-# Application Listeners
-org.springframework.context.ApplicationListener=de.codecentric.mule.configuration.MuleContextListener
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=de.codecentric.mule.configuration.MuleAutoConfiguration
