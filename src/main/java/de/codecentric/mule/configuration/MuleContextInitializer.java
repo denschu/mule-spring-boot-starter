@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ApplicationContextEvent;
 import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.support.StaticApplicationContext;
 
 /**
  * ApplicationListener to startup Mule
@@ -33,10 +34,12 @@ public class MuleContextInitializer implements ApplicationListener<ApplicationCo
 	private void startMuleContext(ApplicationContext parent) {
 		if (muleContext == null) {
 			DefaultMuleContextFactory muleContextFactory = new DefaultMuleContextFactory();
-			SpringXmlConfigurationBuilder configBuilder;
+
 			try {
-				configBuilder = new SpringXmlConfigurationBuilder(config);
-				configBuilder.setParentContext(parent);
+				SpringXmlConfigurationBuilder configBuilder = new SpringXmlConfigurationBuilder(config);
+				StaticApplicationContext staticApplicationContext = new StaticApplicationContext(parent);
+				staticApplicationContext.refresh();
+				configBuilder.setParentContext(staticApplicationContext);
 				muleContext = muleContextFactory.createMuleContext(configBuilder);
 				muleContext.start();
 			} catch (MuleException e) {
