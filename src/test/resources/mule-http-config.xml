@@ -4,10 +4,12 @@
     http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
     http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
 
+	<http:listener-config name="HTTP_Listener_Configuration" host="localhost" port="8081"/>
+
 	<flow name="EchoFlow">
-		<http:inbound-endpoint host="localhost" port="8081" exchange-pattern="request-response" />
-		<logger message="About to echo #[message:payload]" level="INFO"/>
-		<echo-component/>
+		<http:listener config-ref="HTTP_Listener_Configuration" path="*"/>
+		<logger message="About to echo #[payload]" level="INFO"/>
+		<set-payload value="#[message.inboundProperties.'http.request.path']"/>
 	</flow>
 
 </mule>
