@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
+import org.springframework.context.annotation.Lazy;
 
 /**
  * Spring Boot Autoconfiguration for the MuleContext
@@ -18,12 +18,27 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties
 @ConditionalOnClass(MuleContext.class)
 public class MuleAutoConfiguration {
+
+	private MuleContextInitializer muleContextInitializer;
 	
 	@Bean
 	@ConditionalOnMissingBean
 	@ConfigurationProperties(prefix="mule")
 	protected MuleContextInitializer muleContextInitializer() {
-		return new MuleContextInitializer();
+		this.muleContextInitializer =  new MuleContextInitializer();
+		return this.muleContextInitializer;
+	}
+
+	/**
+	 * Bean must be @Lazy to ensure the mulecontext has been initialized
+	 *
+	 * @return the MuleContext
+	 */
+	@Lazy
+	@Bean
+	protected MuleContext muleContext()
+	{
+		return this.muleContextInitializer.getMuleContext();
 	}
 
 }
